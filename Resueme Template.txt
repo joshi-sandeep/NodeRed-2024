@@ -1,0 +1,49 @@
+[
+    {
+        "id": "ba43da38932ff687",
+        "type": "http in",
+        "z": "d1af2e019ace4053",
+        "name": "Resume Request",
+        "url": "/generate-resume",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "b5d55469b3edc05b"
+            ]
+        ]
+    },
+    {
+        "id": "e4ae4d956862e016",
+        "type": "http response",
+        "z": "d1af2e019ace4053",
+        "name": "Resume HTML",
+        "statusCode": "",
+        "headers": {},
+        "x": 660,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b5d55469b3edc05b",
+        "type": "function",
+        "z": "d1af2e019ace4053",
+        "name": "function 1",
+        "func": "msg.payload = `\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>Web Developer Resume</title>\n    <style>\n      body {\n        font-family: 'Arial', sans-serif;\n        margin: 0;\n        padding: 0;\n        background-color: gray;\n        color: #333;\n      }\n\n      header {\n        background-color: #333;\n        color: #fff;\n        text-align: center;\n        padding: 20px;\n      }\n\n      h2, h3 {\n        margin: 0;\n        color: #333;\n      }\n\n       h1{\n          margin: 0;\n         color: white;\n       }\n\n      .intro,\n      .skills,\n      .experience,\n      .education {\n        padding: 20px;\n        background-color: #fff;\n        margin-bottom: 20px;\n        border-radius: 5px;\n        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n        transition: box-shadow 0.3s ease;\n      }\n\n      .skills ul,\n      .experience ul {\n        list-style-type: none;\n        padding-left: 0;\n      }\n\n      .job {\n        margin-bottom: 20px;\n      }\n\n      .job h3 {\n        margin-bottom: 5px;\n      }\n\n      .date {\n        color: #666;\n        font-style: italic;\n      }\n\n      footer {\n        background-color: #333;\n        color: #fff;\n        text-align: center;\n        padding: 10px;\n      }\n\n      .container {\n        display: grid;\n        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));\n        grid-gap: 20px;\n      }\n\n      .card {\n        background-color: #fff;\n        border-radius: 5px;\n        padding: 20px;\n        transition: box-shadow 0.3s ease, transform 0.3s ease;\n      }\n\n      .card:hover {\n        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);\n        transform: scale(1.02);\n      }\n\n      .card h4 {\n        margin-top: 0;\n      }\n\n      .card p {\n        margin-bottom: 10px;\n      }\n\n      .footer-text {\n        font-size: 14px;\n      }\n    </style>\n  </head>\n  <body>\n    <header>\n      <h1>Web Developer Resume</h1>\n    </header>\n    <section class=\"intro\">\n      <h2>About Me</h2>\n      <p>Hi, I'm John Doe, a passionate web developer with expertise in HTML, CSS, and JavaScript. I have a strong background in building responsive and user-friendly websites.</p>\n    </section>\n    <section class=\"skills\">\n      <h2>Skills</h2>\n      <ul>\n        <li>HTML5</li>\n        <li>CSS3</li>\n        <li>JavaScript</li>\n        <li>React</li>\n        <li>Node.js</li>\n        <li>UI/UX Design</li>\n      </ul>\n    </section>\n    <section class=\"experience\">\n      <h2>Experience</h2>\n      <div class=\"container\">\n        <div class=\"card\">\n          <h3>Web Developer - ABC Company</h3>\n          <p class=\"date\">Jan 2019 - Present</p>\n          <ul>\n            <li>Developed and maintained company websites using HTML, CSS, and JavaScript</li>\n            <li>Collaborated with cross-functional teams to implement new features and enhance user experience</li>\n            <li>Optimized websites for speed and performance</li>\n          </ul>\n        </div>\n        <div class=\"card\">\n          <h3>Front-End Developer - XYZ Agency</h3>\n          <p class=\"date\">May 2017 - Dec 2018</p>\n          <ul>\n            <li>Translated design mock-ups into responsive web pages</li>\n            <li>Implemented various front-end libraries and frameworks</li>\n            <li>Ensured cross-browser compatibility and accessibility</li>\n          </ul>\n        </div>\n      </div>\n    </section>\n    <section class=\"education\">\n      <h2>Education</h2>\n      <div class=\"degree\">\n        <h3>Bachelor of Science in Computer Science</h3>\n        <p class=\"date\">2013 - 2017</p>\n        <p>University of ABC</p>\n      </div>\n    </section>\n    <footer>\n      <p>© 2023 John Doe</p>\n    </footer>\n  </body>\n</html>\n`; return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "e4ae4d956862e016"
+            ]
+        ]
+    }
+]

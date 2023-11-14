@@ -1,0 +1,242 @@
+[
+    {
+        "id": "7cfd5bbd5b1d1460",
+        "type": "group",
+        "z": "d0f97531c1a34208",
+        "name": "CPU",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "0357b7c72289ed79",
+            "cb6478f1e84ab40f",
+            "ab4f53f6cbd7af6c",
+            "230b34e9c1cb5a3a",
+            "4fe03a1635762455",
+            "b049c37218257da6"
+        ],
+        "x": 14,
+        "y": 119,
+        "w": 1072,
+        "h": 142
+    },
+    {
+        "id": "0357b7c72289ed79",
+        "type": "cpu",
+        "z": "d0f97531c1a34208",
+        "g": "7cfd5bbd5b1d1460",
+        "name": "",
+        "msgCore": false,
+        "msgOverall": true,
+        "msgArray": false,
+        "msgTemp": true,
+        "x": 350,
+        "y": 180,
+        "wires": [
+            [
+                "4fe03a1635762455"
+            ]
+        ]
+    },
+    {
+        "id": "cb6478f1e84ab40f",
+        "type": "inject",
+        "z": "d0f97531c1a34208",
+        "g": "7cfd5bbd5b1d1460",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "0357b7c72289ed79"
+            ]
+        ]
+    },
+    {
+        "id": "ab4f53f6cbd7af6c",
+        "type": "ui_chart",
+        "z": "d0f97531c1a34208",
+        "g": "7cfd5bbd5b1d1460",
+        "name": "",
+        "group": "289ec29ba96eb1de",
+        "order": 1,
+        "width": 6,
+        "height": 4,
+        "label": "Usage",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "No Data Available",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "230b34e9c1cb5a3a",
+        "type": "ui_chart",
+        "z": "d0f97531c1a34208",
+        "g": "7cfd5bbd5b1d1460",
+        "name": "",
+        "group": "289ec29ba96eb1de",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "No Data Available",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 990,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4fe03a1635762455",
+        "type": "switch",
+        "z": "d0f97531c1a34208",
+        "g": "7cfd5bbd5b1d1460",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "overall",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "temperature",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "ab4f53f6cbd7af6c"
+            ],
+            [
+                "230b34e9c1cb5a3a",
+                "b049c37218257da6"
+            ]
+        ]
+    },
+    {
+        "id": "b049c37218257da6",
+        "type": "change",
+        "z": "d0f97531c1a34208",
+        "g": "7cfd5bbd5b1d1460",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "max_temp",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "max",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 220,
+        "wires": [
+            [
+                "230b34e9c1cb5a3a"
+            ]
+        ]
+    },
+    {
+        "id": "289ec29ba96eb1de",
+        "type": "ui_group",
+        "name": "CPU",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    }
+]

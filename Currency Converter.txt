@@ -1,0 +1,192 @@
+[
+    {
+        "id": "9d5de51566c0f4a0",
+        "type": "http request",
+        "z": "6945e6ea6b225d73",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 190,
+        "y": 320,
+        "wires": [
+            [
+                "d11b82e0bf9f7088"
+            ]
+        ]
+    },
+    {
+        "id": "fa2e04d6a220d90e",
+        "type": "change",
+        "z": "6945e6ea6b225d73",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.eur.usd",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 220,
+        "wires": [
+            [
+                "24301a16975d5e0b"
+            ]
+        ]
+    },
+    {
+        "id": "24301a16975d5e0b",
+        "type": "ui_text",
+        "z": "6945e6ea6b225d73",
+        "group": "f550f4fc8cbb223a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "EUR to USD",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 770,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "20cc5569a6f9e9be",
+        "type": "function",
+        "z": "6945e6ea6b225d73",
+        "name": "urlGenerator",
+        "func": "// Says either \"USD\" or \"EUR\"\nconst inp = msg.payload\n\nvar url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json'\n\nif(inp == \"USD\"){\n    url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json'\n}\n\nmsg = {\n    url: url\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "9d5de51566c0f4a0"
+            ]
+        ]
+    },
+    {
+        "id": "e9dc2dacda562f5f",
+        "type": "ui_text_input",
+        "z": "6945e6ea6b225d73",
+        "name": "",
+        "label": "USD or EUR",
+        "tooltip": "",
+        "group": "f550f4fc8cbb223a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "20cc5569a6f9e9be"
+            ]
+        ]
+    },
+    {
+        "id": "d11b82e0bf9f7088",
+        "type": "switch",
+        "z": "6945e6ea6b225d73",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "eur",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 410,
+        "y": 300,
+        "wires": [
+            [
+                "fa2e04d6a220d90e"
+            ],
+            [
+                "814231d99b7b59ae"
+            ]
+        ]
+    },
+    {
+        "id": "814231d99b7b59ae",
+        "type": "change",
+        "z": "6945e6ea6b225d73",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.usd.eur",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 360,
+        "wires": [
+            [
+                "24301a16975d5e0b"
+            ]
+        ]
+    },
+    {
+        "id": "f550f4fc8cbb223a",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "11130b2099b2c68d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "11130b2099b2c68d",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

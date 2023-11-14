@@ -1,0 +1,123 @@
+[
+    {
+        "id": "6b278b6026b682cd",
+        "type": "tab",
+        "label": "Weather Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "95af15e35a13ca4c",
+        "type": "inject",
+        "z": "6b278b6026b682cd",
+        "name": "Fetch Weather",
+        "props": [
+            {
+                "p": "payload",
+                "v": "fetch weather",
+                "vt": "str"
+            },
+            {
+                "p": "repeat",
+                "v": "30",
+                "vt": "num"
+            },
+            {
+                "p": "crontab",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "once",
+                "v": false,
+                "vt": "bool"
+            },
+            {
+                "p": "onceDelay",
+                "v": 0.1,
+                "vt": "num"
+            }
+        ],
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "650c749effa64bf6"
+            ]
+        ]
+    },
+    {
+        "id": "70ac6cc6f7cc20c4",
+        "type": "debug",
+        "z": "6b278b6026b682cd",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f3f56fc68dbdb1ad",
+        "type": "ui_text",
+        "z": "6b278b6026b682cd",
+        "group": "b14fd14e6eb77d15",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "Weather Details",
+        "label": "Weather Details",
+        "format": "{{msg.payload.detail}}. Temperature: {{msg.payload.tempc}}°F, Humidity: {{msg.payload.humidity}}%",
+        "layout": "row-spread",
+        "className": "",
+        "x": 600,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "650c749effa64bf6",
+        "type": "openweathermap",
+        "z": "6b278b6026b682cd",
+        "name": "bangalore",
+        "wtype": "current",
+        "lon": "77.5946",
+        "lat": "12.9716",
+        "city": "",
+        "country": "",
+        "language": "en",
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "70ac6cc6f7cc20c4",
+                "f3f56fc68dbdb1ad"
+            ]
+        ]
+    },
+    {
+        "id": "bf5541eadc71928d",
+        "type": "comment",
+        "z": "6b278b6026b682cd",
+        "name": "Node-Red Weather App",
+        "info": "",
+        "x": 440,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "b14fd14e6eb77d15",
+        "type": "ui_group",
+        "name": "Weather",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    }
+]

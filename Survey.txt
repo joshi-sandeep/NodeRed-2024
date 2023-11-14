@@ -1,0 +1,114 @@
+[
+    {
+        "id": "e12a9d44.7a32f8",
+        "type": "http in",
+        "z": "66263ea571d07bd2",
+        "name": "/survey",
+        "url": "/survey",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "ba47b9a9.425a9"
+            ]
+        ]
+    },
+    {
+        "id": "ba47b9a9.425a9",
+        "type": "template",
+        "z": "66263ea571d07bd2",
+        "name": "HTML Form",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "plain",
+        "template": "<html>\n<head>\n    <title>Survey Form</title>\n</head>\n<body>\n    <h1>Survey Form</h1>\n    <form action=\"/survey\" method=\"post\">\n        <label for=\"name\">Name:</label>\n        <input type=\"text\" id=\"name\" name=\"name\"><br><br>\n        <label for=\"age\">Age:</label>\n        <input type=\"number\" id=\"age\" name=\"age\"><br><br>\n        <label for=\"gender\">Gender:</label>\n        <input type=\"text\" id=\"gender\" name=\"gender\"><br><br>\n        <input type=\"submit\" value=\"Submit\">\n    </form>\n</body>\n</html>",
+        "output": "str",
+        "x": 320,
+        "y": 140,
+        "wires": [
+            [
+                "a4006dd5.a8283"
+            ]
+        ]
+    },
+    {
+        "id": "a4006dd5.a8283",
+        "type": "http response",
+        "z": "66263ea571d07bd2",
+        "name": "HTTP Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 520,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1fb758b5.b16642",
+        "type": "http in",
+        "z": "66263ea571d07bd2",
+        "name": "/survey",
+        "url": "/survey",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "1e52a90d.953bb2"
+            ]
+        ]
+    },
+    {
+        "id": "1e52a90d.953bb2",
+        "type": "function",
+        "z": "66263ea571d07bd2",
+        "name": "Process Responses",
+        "func": "var name = msg.req.body.name;\nvar age = msg.req.body.age;\nvar gender = msg.req.body.gender;\n\nmsg.payload = {\n    name: name,\n    age: age,\n    gender: gender\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "3e06d5e3.a16948"
+            ]
+        ]
+    },
+    {
+        "id": "3e06d5e3.a16948",
+        "type": "template",
+        "z": "66263ea571d07bd2",
+        "name": "Summary",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<html>\n<head>\n    <title>Survey Summary</title>\n</head>\n<body>\n    <h1>Survey Summary</h1>\n    <p>Name: {{payload.name}}</p>\n    <p>Age: {{payload.age}}</p>\n    <p>Gender: {{payload.gender}}</p>\n</body>\n</html>",
+        "output": "str",
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "9a4e3aeb.95be3"
+            ]
+        ]
+    },
+    {
+        "id": "9a4e3aeb.95be3",
+        "type": "http response",
+        "z": "66263ea571d07bd2",
+        "name": "HTTP Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 200,
+        "wires": []
+    }
+]

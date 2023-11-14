@@ -1,0 +1,224 @@
+[
+    {
+        "id": "c36d02d025a10f6b",
+        "type": "comment",
+        "z": "1578197bb31590ba",
+        "name": "How to Control and Monitor IoT Devices with Node-RED",
+        "info": "",
+        "x": 460,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "c75f2ecc.891a7",
+        "type": "group",
+        "z": "1578197bb31590ba",
+        "name": "Slider",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "9bc2d1c8.edf3b8",
+            "75bb313c.ffe178",
+            "3e3c98fb.c0b6e",
+            "60c30536.c47a9c",
+            "a0ad5815.cebe7",
+            "ec8c78fb.2b6b3"
+        ],
+        "x": 4,
+        "y": 139,
+        "w": 932,
+        "h": 122
+    },
+    {
+        "id": "9bc2d1c8.edf3b8",
+        "type": "ui_slider",
+        "z": "1578197bb31590ba",
+        "g": "c75f2ecc.891a7",
+        "name": "",
+        "label": "Volume %",
+        "tooltip": "",
+        "group": "7aa6809f.7abf28",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 600,
+        "y": 180,
+        "wires": [
+            [
+                "75bb313c.ffe178"
+            ]
+        ]
+    },
+    {
+        "id": "75bb313c.ffe178",
+        "type": "debug",
+        "z": "1578197bb31590ba",
+        "g": "c75f2ecc.891a7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3e3c98fb.c0b6e",
+        "type": "ui_button",
+        "z": "1578197bb31590ba",
+        "g": "c75f2ecc.891a7",
+        "name": "",
+        "group": "3055cfc4.b66258",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Enable Button",
+        "tooltip": "",
+        "color": "green",
+        "bgcolor": "white",
+        "className": "",
+        "icon": "settings",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "a0ad5815.cebe7"
+            ]
+        ]
+    },
+    {
+        "id": "60c30536.c47a9c",
+        "type": "ui_button",
+        "z": "1578197bb31590ba",
+        "g": "c75f2ecc.891a7",
+        "name": "",
+        "group": "3055cfc4.b66258",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Disable Button",
+        "tooltip": "",
+        "color": "red",
+        "bgcolor": "white",
+        "className": "",
+        "icon": "settings",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "a0ad5815.cebe7"
+            ]
+        ]
+    },
+    {
+        "id": "a0ad5815.cebe7",
+        "type": "change",
+        "z": "1578197bb31590ba",
+        "g": "c75f2ecc.891a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 180,
+        "wires": [
+            [
+                "9bc2d1c8.edf3b8"
+            ]
+        ]
+    },
+    {
+        "id": "ec8c78fb.2b6b3",
+        "type": "ui_button",
+        "z": "1578197bb31590ba",
+        "g": "c75f2ecc.891a7",
+        "name": "",
+        "group": "3055cfc4.b66258",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Set 10",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "10",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "9bc2d1c8.edf3b8"
+            ]
+        ]
+    },
+    {
+        "id": "7aa6809f.7abf28",
+        "type": "ui_group",
+        "name": "Function",
+        "tab": "d17b9cfa.91d5a",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3055cfc4.b66258",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "d17b9cfa.91d5a",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d17b9cfa.91d5a",
+        "type": "ui_tab",
+        "name": "Slider",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]

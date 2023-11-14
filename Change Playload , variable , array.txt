@@ -1,0 +1,452 @@
+[
+    {
+        "id": "80f0c628.68092",
+        "type": "group",
+        "z": "e1b4896082747fe8",
+        "name": "Change Payload",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c7d2bdd9.a58f2",
+            "5dea81a0.7dfee8",
+            "c84f00d5.192b88",
+            "e8fa8f02.e40ce"
+        ],
+        "x": 54,
+        "y": 79,
+        "w": 732,
+        "h": 122
+    },
+    {
+        "id": "c7d2bdd9.a58f2",
+        "type": "inject",
+        "z": "e1b4896082747fe8",
+        "g": "80f0c628.68092",
+        "name": "Inject Integer",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "c84f00d5.192b88",
+                "5dea81a0.7dfee8"
+            ]
+        ]
+    },
+    {
+        "id": "5dea81a0.7dfee8",
+        "type": "debug",
+        "z": "e1b4896082747fe8",
+        "g": "80f0c628.68092",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c84f00d5.192b88",
+        "type": "function",
+        "z": "e1b4896082747fe8",
+        "g": "80f0c628.68092",
+        "name": "Change msg.payload",
+        "func": "msg.payload = 6\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "e8fa8f02.e40ce"
+            ]
+        ]
+    },
+    {
+        "id": "e8fa8f02.e40ce",
+        "type": "debug",
+        "z": "e1b4896082747fe8",
+        "g": "80f0c628.68092",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1a69ef5d.fbf659",
+        "type": "group",
+        "z": "e1b4896082747fe8",
+        "name": "Variables",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "57a04669.fc8eb",
+            "9af89c8.e034b6",
+            "78e966b8.4131a8",
+            "854334d1.c0735",
+            "b59a7eca.c0ec3",
+            "524df4a8.7d2e7c"
+        ],
+        "x": 74,
+        "y": 259,
+        "w": 672,
+        "h": 162
+    },
+    {
+        "id": "57a04669.fc8eb",
+        "type": "function",
+        "z": "e1b4896082747fe8",
+        "g": "1a69ef5d.fbf659",
+        "name": "set flow and global variable",
+        "func": "// define variable\nvar value = 5\n\n// change value of variable\nvalue = 6\n\n// set flow variable\nflow.set(\"value\",value)\n\n// add 1 to variable\nvalue ++\n\n// set global variable\nglobal.set(\"value\", value)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9af89c8.e034b6",
+        "type": "function",
+        "z": "e1b4896082747fe8",
+        "g": "1a69ef5d.fbf659",
+        "name": "get flow variable",
+        "func": "// get value from flow variable and check if it exists\n// if not set value to 0\nvar value = flow.get(\"value\") || 0\n\n// set msg.payload to flow variable\nmsg.payload = value\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "78e966b8.4131a8"
+            ]
+        ]
+    },
+    {
+        "id": "78e966b8.4131a8",
+        "type": "debug",
+        "z": "e1b4896082747fe8",
+        "g": "1a69ef5d.fbf659",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "854334d1.c0735",
+        "type": "debug",
+        "z": "e1b4896082747fe8",
+        "g": "1a69ef5d.fbf659",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "b59a7eca.c0ec3",
+        "type": "function",
+        "z": "e1b4896082747fe8",
+        "g": "1a69ef5d.fbf659",
+        "name": "get global variable",
+        "func": "// get value from global variable and check if it exists\n// if not set value to 0\nvar value = global.get(\"value\") || 0\n\n// set msg.payload to global variable\nmsg.payload = value\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "854334d1.c0735"
+            ]
+        ]
+    },
+    {
+        "id": "524df4a8.7d2e7c",
+        "type": "inject",
+        "z": "e1b4896082747fe8",
+        "g": "1a69ef5d.fbf659",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 300,
+        "wires": [
+            [
+                "57a04669.fc8eb",
+                "9af89c8.e034b6",
+                "b59a7eca.c0ec3"
+            ]
+        ]
+    },
+    {
+        "id": "da91e543.404b88",
+        "type": "group",
+        "z": "e1b4896082747fe8",
+        "name": "Array",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "7f1ddfc5.1c4e48",
+            "feea97cb.e0327",
+            "b51baef1.dd47b8",
+            "f2b21404.45fe18",
+            "488685dd.30a2b4",
+            "e04b601e.4777a8",
+            "81383807.a3903",
+            "174673c6.b161ec",
+            "a5122860.f851a"
+        ],
+        "x": 94,
+        "y": 459,
+        "w": 752,
+        "h": 442
+    },
+    {
+        "id": "7f1ddfc5.1c4e48",
+        "type": "inject",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 540,
+        "wires": [
+            [
+                "feea97cb.e0327"
+            ]
+        ]
+    },
+    {
+        "id": "feea97cb.e0327",
+        "type": "function",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "basic array functions 1",
+        "func": "// define empty array as variable\nvar valueArray = []\n\n// add values to Array\nvalueArray.push(5)\nvalueArray.push(6)\nvalueArray.push(7)\n\n// return valueArray in msg.payload\nmsg.payload = valueArray\n\n// return length of valueArray in msg.arrayLength\nmsg.arrayLength = valueArray.length\n\n// return msg Object\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 540,
+        "wires": [
+            [
+                "b51baef1.dd47b8",
+                "f2b21404.45fe18"
+            ]
+        ]
+    },
+    {
+        "id": "b51baef1.dd47b8",
+        "type": "debug",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f2b21404.45fe18",
+        "type": "function",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "basic array functions 2",
+        "func": "// define variable as msg.payload\nvar inp = msg.payload\n\n// change value of specific index\ninp[2] = 20\n\n// set msg.payload to inp array\nmsg.payload = inp\n\n// return msg Object\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 460,
+        "y": 620,
+        "wires": [
+            [
+                "488685dd.30a2b4",
+                "e04b601e.4777a8"
+            ]
+        ]
+    },
+    {
+        "id": "488685dd.30a2b4",
+        "type": "debug",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "e04b601e.4777a8",
+        "type": "function",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "basic array functions 3",
+        "func": "// define variable as msg.payload\nvar inp = msg.payload\n\n// delete last indec of array\ninp.pop()\n\n// set msg.payload to inp array\nmsg.payload = inp\n\n// return msg Object\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 660,
+        "y": 660,
+        "wires": [
+            [
+                "81383807.a3903",
+                "174673c6.b161ec"
+            ]
+        ]
+    },
+    {
+        "id": "81383807.a3903",
+        "type": "debug",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "174673c6.b161ec",
+        "type": "function",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "basic array functions 4",
+        "func": "// define variable as msg.payload\nvar inp = msg.payload\n\n// cut value between index\ninp.splice(0,1)\n\n// set msg.payload to inp array\nmsg.payload = inp\n\n// return msg Object\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 800,
+        "wires": [
+            [
+                "a5122860.f851a"
+            ]
+        ]
+    },
+    {
+        "id": "a5122860.f851a",
+        "type": "debug",
+        "z": "e1b4896082747fe8",
+        "g": "da91e543.404b88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 860,
+        "wires": []
+    }
+]

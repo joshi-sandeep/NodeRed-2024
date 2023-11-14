@@ -1,0 +1,133 @@
+[
+    {
+        "id": "7812413d6f81f822",
+        "type": "tab",
+        "label": "input to pdf",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7e128d62c84f23ce",
+        "type": "pdfmake",
+        "z": "7812413d6f81f822",
+        "name": "pdf generator",
+        "outputType": "Buffer",
+        "inputProperty": "payload",
+        "options": "{}",
+        "outputProperty": "payload",
+        "x": 270,
+        "y": 380,
+        "wires": [
+            [
+                "f8c61e7e837a3e8d"
+            ]
+        ]
+    },
+    {
+        "id": "f8c61e7e837a3e8d",
+        "type": "file",
+        "z": "7812413d6f81f822",
+        "name": "",
+        "filename": "E:\\NodeRedHome\\test1.pdf",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 500,
+        "y": 380,
+        "wires": [
+            [
+                "c93a6fe6ba752b04"
+            ]
+        ]
+    },
+    {
+        "id": "3878add7c7e2c807",
+        "type": "comment",
+        "z": "7812413d6f81f822",
+        "name": "Simple Example PDF",
+        "info": "This is the simplest PDF test as seen in the pdfmake examples [here](http://pdfmake.org/playground.html)",
+        "x": 420,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "c93a6fe6ba752b04",
+        "type": "debug",
+        "z": "7812413d6f81f822",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f3e8915c2e1d199f",
+        "type": "ui_text_input",
+        "z": "7812413d6f81f822",
+        "name": "",
+        "label": "Enter Data",
+        "tooltip": "",
+        "group": "1eba77832ee5ca1f",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "3c398d586cfc1ce0"
+            ]
+        ]
+    },
+    {
+        "id": "3c398d586cfc1ce0",
+        "type": "function",
+        "z": "7812413d6f81f822",
+        "name": "Format Data for PDF",
+        "func": "var inputData = msg.payload;\nvar pdfContent = [\n    \"hello: \" + inputData,\n    \"Welcome to Node-RED tutorial\",\n    \"Like, share, and subscribe\"\n];\nmsg.payload = { content: pdfContent };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 280,
+        "wires": [
+            [
+                "7e128d62c84f23ce"
+            ]
+        ]
+    },
+    {
+        "id": "1eba77832ee5ca1f",
+        "type": "ui_group",
+        "name": "PDF Generator",
+        "tab": "dc113c02e857ab8b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "dc113c02e857ab8b",
+        "type": "ui_tab",
+        "name": "pdf",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

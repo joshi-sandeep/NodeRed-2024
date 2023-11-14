@@ -1,0 +1,118 @@
+[
+    {
+        "id": "3f6cc147.6c4af2",
+        "type": "http request",
+        "z": "b25b85375fe25da0",
+        "name": "Fetch Data",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.example.com/data",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "f8b50a47.6a6c78"
+            ]
+        ]
+    },
+    {
+        "id": "f8b50a47.6a6c78",
+        "type": "function",
+        "z": "b25b85375fe25da0",
+        "name": "Extract Text",
+        "func": "const data = JSON.parse(msg.payload);\nconst text = data.text;\n\nmsg.payload = text;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "ecc30ca8.5c181"
+            ]
+        ]
+    },
+    {
+        "id": "ecc30ca8.5c181",
+        "type": "http request",
+        "z": "b25b85375fe25da0",
+        "name": "Translate",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.example.com/translate",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 420,
+        "y": 320,
+        "wires": [
+            [
+                "5429c6c9.8b05f"
+            ]
+        ]
+    },
+    {
+        "id": "5429c6c9.8b05f",
+        "type": "function",
+        "z": "b25b85375fe25da0",
+        "name": "Process Translation",
+        "func": "const translation = msg.payload.translation;\n\nmsg.payload = translation;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 610,
+        "y": 300,
+        "wires": [
+            [
+                "a2a7cc36.4768f"
+            ]
+        ]
+    },
+    {
+        "id": "a2a7cc36.4768f",
+        "type": "debug",
+        "z": "b25b85375fe25da0",
+        "name": "Translated Text",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f207b5f9.d6a088",
+        "type": "inject",
+        "z": "b25b85375fe25da0",
+        "name": "Trigger",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "3f6cc147.6c4af2"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,49 @@
+[
+    {
+        "id": "eae92c43.07c15",
+        "type": "http in",
+        "z": "7c56b4160a50240c",
+        "name": "Menu",
+        "url": "/menu",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 200,
+        "wires": [
+            [
+                "e1ef15c7.586c98"
+            ]
+        ]
+    },
+    {
+        "id": "e1ef15c7.586c98",
+        "type": "template",
+        "z": "7c56b4160a50240c",
+        "name": "Menu Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<div class=\"framer-1s501n9\" data-framer-name=\"Menu\" name=\"Menu\">\n  <div class=\"framer-ssvs7e\">\n    <a href=\"/portfolio\">Portfolio</a>\n  </div>\n  <div class=\"framer-1044k8p\">\n    <a href=\"/services\">Services</a>\n  </div>\n  <div class=\"framer-1o9t81c hidden-jduxnn hidden-kr57t2\">\n    <a href=\"/about\">About</a>\n  </div>\n  <div class=\"framer-170hpc5 hidden-jduxnn hidden-kr57t2\">\n    <a href=\"/contact\">Contact</a>\n  </div>\n</div>",
+        "output": "str",
+        "x": 420,
+        "y": 200,
+        "wires": [
+            [
+                "616c392c.5f6798"
+            ]
+        ]
+    },
+    {
+        "id": "616c392c.5f6798",
+        "type": "http response",
+        "z": "7c56b4160a50240c",
+        "name": "HTTP Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 620,
+        "y": 200,
+        "wires": []
+    }
+]

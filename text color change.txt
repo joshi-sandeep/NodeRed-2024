@@ -1,0 +1,247 @@
+[
+    {
+        "id": "5e7da0b2.2356a4",
+        "type": "ui_template",
+        "z": "6f915331.a603e4",
+        "group": "",
+        "name": "",
+        "order": 0,
+        "width": "6",
+        "height": "4",
+        "format": "<div>\n  <input type=\"text\" ng-model=\"num1\" placeholder=\"Number 1\">\n  <select ng-model=\"operator\">\n    <option value=\"+\">+</option>\n    <option value=\"-\">-</option>\n    <option value=\"*\">*</option>\n    <option value=\"/\">/</option>\n  </select>\n  <input type=\"text\" ng-model=\"num2\" placeholder=\"Number 2\">\n  <button ng-click=\"calculate()\">Calculate</button>\n  <h4>Result: {{ result }}</h4>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "f2d86dcc9f2d9fb2",
+                "c7ad523f.1c97f"
+            ]
+        ]
+    },
+    {
+        "id": "c7ad523f.1c97f",
+        "type": "function",
+        "z": "6f915331.a603e4",
+        "name": "",
+        "func": "msg.payload = {\n    num1: msg.ui_control.num1 || 0,\n    operator: msg.ui_control.operator || \"+\",\n    num2: msg.ui_control.num2 || 0\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "e1030719.57915"
+            ]
+        ]
+    },
+    {
+        "id": "e1030719.57915",
+        "type": "switch",
+        "z": "6f915331.a603e4",
+        "name": "",
+        "property": "payload.operator",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "+",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "-",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "*",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "24574a1c286e12cb"
+            ],
+            [
+                "95cc53e632e08572"
+            ],
+            [
+                "4cda414c12c415af"
+            ],
+            [
+                "fdc5278bfe2efde3"
+            ]
+        ]
+    },
+    {
+        "id": "6bb3265bcd75541c",
+        "type": "inject",
+        "z": "6f915331.a603e4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 60,
+        "wires": [
+            [
+                "5e7da0b2.2356a4"
+            ]
+        ]
+    },
+    {
+        "id": "24574a1c286e12cb",
+        "type": "ui_template",
+        "z": "6f915331.a603e4",
+        "group": "",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <h4>Result: {{msg.payload.result}}</h4>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 580,
+        "y": 140,
+        "wires": [
+            [
+                "6945d9c347c3f6ab"
+            ]
+        ]
+    },
+    {
+        "id": "95cc53e632e08572",
+        "type": "ui_template",
+        "z": "6f915331.a603e4",
+        "group": "",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <h4>Result: {{msg.payload.result}}</h4>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "6945d9c347c3f6ab"
+            ]
+        ]
+    },
+    {
+        "id": "4cda414c12c415af",
+        "type": "ui_template",
+        "z": "6f915331.a603e4",
+        "group": "",
+        "name": "",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <h4>Result: {{msg.payload.result}}</h4>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "6945d9c347c3f6ab"
+            ]
+        ]
+    },
+    {
+        "id": "fdc5278bfe2efde3",
+        "type": "ui_template",
+        "z": "6f915331.a603e4",
+        "group": "",
+        "name": "",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <h4>Result: {{msg.payload.result}}</h4>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 560,
+        "y": 360,
+        "wires": [
+            [
+                "6945d9c347c3f6ab"
+            ]
+        ]
+    },
+    {
+        "id": "6945d9c347c3f6ab",
+        "type": "debug",
+        "z": "6f915331.a603e4",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f2d86dcc9f2d9fb2",
+        "type": "debug",
+        "z": "6f915331.a603e4",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 140,
+        "wires": []
+    }
+]

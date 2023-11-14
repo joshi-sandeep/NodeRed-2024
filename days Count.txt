@@ -1,0 +1,49 @@
+[
+    {
+        "id": "5da621024af68358",
+        "type": "http in",
+        "z": "73edced96a3bfea2",
+        "name": "",
+        "url": "/date-counter",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "cfd2f414c846fcc7"
+            ]
+        ]
+    },
+    {
+        "id": "31931d8fb7c9d6cd",
+        "type": "http response",
+        "z": "73edced96a3bfea2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cfd2f414c846fcc7",
+        "type": "template",
+        "z": "73edced96a3bfea2",
+        "name": "days count function",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n<title> Date Counter </title>\n</head>    \n\n<body>\n    <h1> Date Counter </h1>\n    <input type=\"date\" id=\"startDate\">\n    <input type=\"date\" id=\"endDate\">\n    <button onclick=\"calculateDays\"> Calculate </button>\n    <p id=\"result\"> </p>\n\n    <script>\n        function calculateDays(){\n            var startDate = document.getElementById(\"startDate\").value;\n            var endDate = document.getElementById('endDate').value;\n\n            if(startDate && endDate) {\n             var start = new Date(startDate);\n             var end = new Date(endDate);\n\n             var timeDiff = Math.abs(end.getTime() -  start.getTime());\n             var dayCount = Math.ceil(timeDiff/(1000 * 3600 * 24));\n\n             document.getElementById('result').textContent = \"Days between dates = \"+ dayCount;\n            }\n        }\n    </script>    \n</body>    \n</html>    ",
+        "output": "str",
+        "x": 450,
+        "y": 240,
+        "wires": [
+            [
+                "31931d8fb7c9d6cd"
+            ]
+        ]
+    }
+]

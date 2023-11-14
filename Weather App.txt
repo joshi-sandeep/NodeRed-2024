@@ -1,0 +1,202 @@
+[
+    {
+        "id": "e36e2f57.4c5ad",
+        "type": "http request",
+        "z": "2e6e0988.87b7da",
+        "name": "Get Weather",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "9e0bca9f.2d8a78"
+            ]
+        ]
+    },
+    {
+        "id": "1ce02e79.c1c76",
+        "type": "inject",
+        "z": "2e6e0988.87b7da",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "9e0bca9f.2d8a78"
+            ]
+        ]
+    },
+    {
+        "id": "3dd3d901.6a2bb8",
+        "type": "function",
+        "z": "2e6e0988.87b7da",
+        "name": "Set API Details",
+        "func": "const apiKey = \"YOUR_API_KEY\"; // Replace with your OpenWeatherMap API Key\nconst latitude = \"YOUR_LATITUDE\"; // Replace with your latitude\nconst longitude = \"YOUR_LONGITUDE\"; // Replace with your longitude\n\nconst apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;\n\nmsg.url = apiUrl;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 200,
+        "y": 180,
+        "wires": [
+            [
+                "e36e2f57.4c5ad"
+            ]
+        ]
+    },
+    {
+        "id": "6de1f5db.6789c4",
+        "type": "debug",
+        "z": "2e6e0988.87b7da",
+        "name": "Weather Details",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "fcd672ae.dac778",
+        "type": "ui_text",
+        "z": "2e6e0988.87b7da",
+        "group": "6cfb0134.4ceaa8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Temperature",
+        "label": "Temperature",
+        "format": "{{msg.payload.main.temp}} °C",
+        "layout": "row-spread",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9e0bca9f.2d8a78",
+        "type": "function",
+        "z": "2e6e0988.87b7da",
+        "name": "Format Temperature",
+        "func": "const temperature = msg.payload.main.temp;\nmsg.payload = {\n    temperature: temperature\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "fcd672ae.dac778",
+                "5e0d6484.7235dc"
+            ]
+        ]
+    },
+    {
+        "id": "5e0d6484.7235dc",
+        "type": "ui_chart",
+        "z": "2e6e0988.87b7da",
+        "name": "Temperature Chart",
+        "group": "6cfb0134.4ceaa8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 610,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9026e64d.86898",
+        "type": "comment",
+        "z": "2e6e0988.87b7da",
+        "name": "Configure API Details",
+        "info": "",
+        "x": 360,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e2581d8d.51b348",
+        "type": "comment",
+        "z": "2e6e0988.87b7da",
+        "name": "Trigger to Get Weather",
+        "info": "",
+        "x": 200,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "da4c0624.1cb8b",
+        "type": "comment",
+        "z": "2e6e0988.87b7da",
+        "name": "Display Weather Details",
+        "info": "",
+        "x": 590,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6cfb0134.4ceaa8",
+        "type": "ui_group",
+        "name": "Weather",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    }
+]

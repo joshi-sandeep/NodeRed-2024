@@ -1,0 +1,112 @@
+[
+    {
+        "id": "c9e2739c.b5d778",
+        "type": "csv",
+        "z": "a35e2dd66ea96e22",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "4cbbd8a1.6c2994"
+            ]
+        ]
+    },
+    {
+        "id": "4cbbd8a1.6c2994",
+        "type": "function",
+        "z": "a35e2dd66ea96e22",
+        "name": "Prepare Chart Data",
+        "func": "var chartData = [\n    { x: 'Player A', y: 50 },\n    { x: 'Player B', y: 30 },\n    { x: 'Player C', y: 75 }\n];\n\nmsg.payload = chartData;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "fda0a84e.6506c"
+            ]
+        ]
+    },
+    {
+        "id": "fda0a84e.6506c",
+        "type": "ui_chart",
+        "z": "a35e2dd66ea96e22",
+        "name": "Cricket Batting Chart",
+        "group": "68b20bc4.d282b8",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "label": "Cricket Batting Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "string",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 730,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff9a5e3a.44a898",
+        "type": "http in",
+        "z": "a35e2dd66ea96e22",
+        "name": "/battingdata",
+        "url": "/battingdata",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "c9e2739c.b5d778"
+            ]
+        ]
+    },
+    {
+        "id": "68b20bc4.d282b8",
+        "type": "ui_group",
+        "name": "Cricket",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    }
+]

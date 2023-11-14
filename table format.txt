@@ -1,0 +1,200 @@
+[
+    {
+        "id": "e84ed138350e0898",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ea21797d3379af7e",
+        "type": "group",
+        "z": "e84ed138350e0898",
+        "name": "Table Formats",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "90893dbd6d2fd3e3",
+            "2793c88f65d81947",
+            "ba579a87b26b7fe6",
+            "da80efb16fb58b52"
+        ],
+        "x": 74,
+        "y": 219,
+        "w": 612,
+        "h": 142
+    },
+    {
+        "id": "2793c88f65d81947",
+        "type": "inject",
+        "z": "e84ed138350e0898",
+        "g": "ea21797d3379af7e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "ba579a87b26b7fe6"
+            ]
+        ]
+    },
+    {
+        "id": "ba579a87b26b7fe6",
+        "type": "function",
+        "z": "e84ed138350e0898",
+        "g": "ea21797d3379af7e",
+        "name": "",
+        "func": "msg.payload = [\n    {\n        \"img\": \"https://media.licdn.com/dms/image/D5603AQH6a0oCln96BQ/profile-displayphoto-shrink_200_200/0/1667445293925?e=1695254400&v=beta&t=Ax-nM8hpnq51J72k0xTClhZ49Gs6i1cHeedB6qEYRgM\",\n        \"prog\" : Math.random() * 100,\n        \"traffic\" : Math.random() * 100,\n        \"color\" : \"#8f0000\",\n        \"tick\" : true,\n        \"star\" : Math.round(4.9)\n    },\n    {\n        \"img\": \"https://media.licdn.com/dms/image/D5603AQH6a0oCln96BQ/profile-displayphoto-shrink_200_200/0/1667445293925?e=1695254400&v=beta&t=Ax-nM8hpnq51J72k0xTClhZ49Gs6i1cHeedB6qEYRgM\",\n        \"prog\" : Math.random() * 100,\n        \"traffic\" : Math.random() * 100,\n        \"color\" : \"green\",\n        \"tick\" : false,\n        \"star\" : 1\n    }\n]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "90893dbd6d2fd3e3"
+            ]
+        ]
+    },
+    {
+        "id": "da80efb16fb58b52",
+        "type": "ui_template",
+        "z": "e84ed138350e0898",
+        "g": "ea21797d3379af7e",
+        "group": "6b800beeb703abcb",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    .tabulator-cell > img {\n        height: 20px;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 600,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90893dbd6d2fd3e3",
+        "type": "ui_table",
+        "z": "e84ed138350e0898",
+        "g": "ea21797d3379af7e",
+        "group": "6b800beeb703abcb",
+        "name": "",
+        "order": 1,
+        "width": 20,
+        "height": 4,
+        "columns": [
+            {
+                "field": "img",
+                "title": "Image",
+                "width": "",
+                "align": "center",
+                "formatter": "image",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "prog",
+                "title": "Progress",
+                "width": "",
+                "align": "left",
+                "formatter": "progress",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "traffic",
+                "title": "Traffic",
+                "width": "",
+                "align": "left",
+                "formatter": "traffic",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "color",
+                "title": "Color",
+                "width": "",
+                "align": "left",
+                "formatter": "color",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "tick",
+                "title": "Tick",
+                "width": "",
+                "align": "left",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "star",
+                "title": "Star",
+                "width": "",
+                "align": "left",
+                "formatter": "star",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "",
+                "title": "Row number",
+                "width": "",
+                "align": "left",
+                "formatter": "rownum",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 590,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "6b800beeb703abcb",
+        "type": "ui_group",
+        "name": "Table",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": 20,
+        "collapse": false,
+        "className": ""
+    }
+]
